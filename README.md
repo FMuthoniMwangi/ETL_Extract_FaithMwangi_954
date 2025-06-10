@@ -72,7 +72,7 @@ Columns include transaction ID, customer phone, supermarket, agent, transaction 
 
 ## Screenshots
 ### Dataset Preview 
-![alt text](images/image-1.png)
+![alt text](images/image.png)
 
 ### Full Extraction
 ![alt text](images/image-1.png)
