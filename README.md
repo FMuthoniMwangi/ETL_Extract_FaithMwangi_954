@@ -1,4 +1,4 @@
-# ETL Extract Lab
+# ETL Lab
 
 **Student:** Faith Mwangi  
 **Student ID:** 669954  
@@ -9,7 +9,21 @@
 
 ## Project Description
 
-This project demonstrates Full Extraction and Incremental Extraction as part of an ETL (Extract, Transform, Load) process using a realistic Kenyan-based transaction dataset. The notebook walks through generating sample M-Pesa and supermarket sales data, performing full data extraction, tracking extraction timestamps, and extracting only new or updated records incrementally.
+This project demonstrates Full Extraction and Incremental Extraction as part of an ETL (Extract, Transform, Load) process using a realistic Kenyan-based transaction dataset.
+
+## Lab 3: ETL Extract Lab
+
+Generating sample M-Pesa and supermarket sales data, performing full data extraction, tracking extraction timestamps, and extracting only new or updated records incrementally.
+
+## Lab 4: Transform in ETL
+
+This lab extends the ETL pipeline by adding data transformation steps. Transformations applied:
+- Removed duplicate transactions for data cleanliness.
+- Added a `transaction_fee` column (1.5% of the transaction amount).
+- Standardized all date fields to `YYYY-MM-DD` format.
+- Categorized transactions as Small, Medium, or Large based on amount.
+
+See `transformed_full.csv` and `transformed_incremental.csv` for outputs.
 
 ---
 
@@ -71,19 +85,28 @@ Columns include transaction ID, customer phone, supermarket, agent, transaction 
 ---
 
 ## Screenshots
-### Dataset Preview 
+### Extracting
+
+#### Dataset Preview 
 ![alt text](images/image.png)
 
-### Full Extraction
+#### Full Extraction
 ![alt text](images/image-1.png)
 
-### Incremental Extraction
+#### Incremental Extraction
 ![alt text](images/image-2.png)
 
-### Timestamp Update
+#### Timestamp Update
 ![alt text](images/image-3.png)
 ---
 
+### Transforming
+
+#### Full Data
+![alt text](images/image-4.png)
+
+#### Incremental Data 
+![alt text](images/image-5.png)
 ## License
 
 MIT License.
