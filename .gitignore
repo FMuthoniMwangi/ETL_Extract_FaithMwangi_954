@@ -5,3 +5,6 @@ __pycache__/
 last_extraction.txt
 transformed_full.csv
 transformed_incremental.csv
+*.db
+*.parquet
+loaded_data/
