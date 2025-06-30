@@ -1,7 +1,7 @@
 # ETL Lab
 
 **Student:** Faith Mwangi  
-**Student ID:** 669954  
+**Student ID:** ***954  
 **Course:** DSA 2040A  
 **Lab:** Extraction in ETL
 
