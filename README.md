@@ -9,29 +9,63 @@
 
 ## Project Description
 
-This project demonstrates Full Extraction and Incremental Extraction as part of an ETL (Extract, Transform, Load) process using a realistic Kenyan-based transaction dataset.
+This project demonstrates the development of an ETL (Extract, Transform, Load) pipeline using a synthetic Kenyan transaction dataset. The workflow covers full extraction, incremental extraction, data transformation, and data loading into a structured database.
+
+---
 
 ## Lab 3: ETL Extract Lab
 
-Generating sample M-Pesa and supermarket sales data, performing full data extraction, tracking extraction timestamps, and extracting only new or updated records incrementally.
+Sample M-Pesa and supermarket sales data are generated and subjected to both full and incremental extraction. Extraction timestamps are tracked to ensure only new or updated records are captured during incremental runs.
+
+---
 
 ## Lab 4: Transform in ETL
 
-This lab extends the ETL pipeline by adding data transformation steps. Transformations applied:
-- Removed duplicate transactions for data cleanliness.
-- Added a `transaction_fee` column (1.5% of the transaction amount).
-- Standardized all date fields to `YYYY-MM-DD` format.
-- Categorized transactions as Small, Medium, or Large based on amount.
+The transformation phase includes:
+- Removal of duplicate transactions.
+- Addition of a `transaction_fee` column (1.5% of the transaction amount).
+- Standardization of date fields to the `YYYY-MM-DD` format.
+- Categorization of transactions by amount (Small, Medium, Large).
 
-See `transformed_full.csv` and `transformed_incremental.csv` for outputs.
+Transformed results are available in `transformed_full.csv` and `transformed_incremental.csv`.
+
+---
+
+## Lab 5 – Load
+
+Transformed datasets (`transformed_full.csv` and `transformed_incremental.csv`) are loaded into structured formats using SQLite databases.
+
+**Method:**  
+- Python and pandas are used to load the data into `.db` files located in the `loaded_data/` directory.
+
+**Sample Code:**
+```python
+import pandas as pd
+import sqlite3
+
+# Load the full dataset
+df_full = pd.read_csv("transformed_full.csv")
+conn_full = sqlite3.connect("loaded_data/full_data.db")
+df_full.to_sql("full_data", conn_full, if_exists="replace", index=False)
+conn_full.close()
+
+# Load the incremental dataset
+df_inc = pd.read_csv("transformed_incremental.csv")
+conn_inc = sqlite3.connect("loaded_data/incremental_data.db")
+df_inc.to_sql("incremental_data", conn_inc, if_exists="replace", index=False)
+conn_inc.close()
+```
+
+**Outputs:**  
+- SQLite: `loaded_data/full_data.db`, `loaded_data/incremental_data.db`
 
 ---
 
 ## Tools Used
 
-- **Python 3**
-- **pandas**
-- **Jupyter Notebook**
+- Python 3
+- pandas
+- Jupyter Notebook
 
 ---
 
@@ -39,74 +73,79 @@ See `transformed_full.csv` and `transformed_incremental.csv` for outputs.
 
 ```
 ETL_Extract_FMuthoniMwangi_669954/
-├── etl_extract.ipynb        # Main Jupyter notebook
-├── custom_data.csv          # Generated Kenyan transaction dataset
-├── last_extraction.txt      # Tracks timestamp for incremental extraction
-├── .gitignore               # Files to ignore in Git
-├── README.md                # Project documentation
+├── etl_extract.ipynb
+├── custom_data.csv
+├── last_extraction.txt
+├── transformed_full.csv
+├── transformed_incremental.csv
+├── loaded_data/
+│   ├── full_data.db
+│   └── incremental_data.db
+├── .gitignore
+├── README.md
 ```
 
 ---
 
-## How to Reproduce
+## How to Run
 
-### 1. Clone the Repository
+1. **Clone the Repository**
 
 ```sh
 git clone https://github.com/FMuthoniMwangi/ETL_Extract_FMuthoniMwangi_669954.git
 cd ETL_Extract_FMuthoniMwangi_669954
 ```
 
-### 2. Install Dependencies
-
-Make sure you have Python 3, then install required packages:
+2. **Install Dependencies**
 
 ```sh
 pip install pandas jupyter
 ```
 
-### 3. Run the Notebook
-
-Start Jupyter Notebook:
+3. **Start Jupyter Notebook**
 
 ```sh
 jupyter notebook
 ```
-
-Open `etl_extract.ipynb` in your browser and follow the step-by-step instructions inside. The notebook will generate `custom_data.csv` and demonstrate both full and incremental extraction.
+Open `etl_extract.ipynb` and execute the cells as instructed. This will generate data and demonstrate both extraction methods.
 
 ---
 
 ## Data Source
 
-The dataset is generated synthetically using Python, simulating 50 M-Pesa transactions at various Kenyan supermarkets and agents.  
-Columns include transaction ID, customer phone, supermarket, agent, transaction type, amount, date, and last updated timestamp.
+The dataset is synthetically generated to simulate 50 M-Pesa transactions at various Kenyan supermarkets and agents.  
+Fields include transaction ID, customer phone, supermarket, agent, transaction type, amount, date, and last updated timestamp.
 
 ---
 
 ## Screenshots
+
 ### Extracting
 
 #### Dataset Preview 
-![alt text](images/image.png)
+![Dataset Preview](images/image.png)
 
 #### Full Extraction
-![alt text](images/image-1.png)
+![Full Extraction](images/image-1.png)
 
 #### Incremental Extraction
-![alt text](images/image-2.png)
+![Incremental Extraction](images/image-2.png)
 
 #### Timestamp Update
-![alt text](images/image-3.png)
+![Timestamp Update](images/image-3.png)
+
 ---
 
 ### Transforming
 
 #### Full Data
-![alt text](images/image-4.png)
+![Full Data](images/image-4.png)
 
 #### Incremental Data 
-![alt text](images/image-5.png)
+![Incremental Data](images/image-5.png)
+
+---
+
 ## License
 
 MIT License.
